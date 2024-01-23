@@ -1,17 +1,26 @@
-class Car:
-    def __init__(self, color: str, brand: str, hp: int):
-        self.color = color
-        self.brand = brand
-        self.hp = hp
+class Library:
+    books = []
+    def __init__(self, name: str, author: str):
+        
+        
+        self.book = (name, author)    
+
+    def add_book(self):
+        self.books.append(self.book)
+        
     
 
+
+
+
+        
+        
     
+        
     
 
-car1 = Car('', '', 200)
-car2 = Car('', '', 200)
-car3 = Car('', '', 250)
+book1 = Library('red', 'toyota')
 
 
-print(car1.hp == car2.hp)
-print(car1.hp == car3.hp)
+book1.add_book()
+print(Library.books)
