@@ -1,33 +1,52 @@
+class Book:
+    def __init__(self, name: str, author: str) -> None:
+        self.name = name
+        self.author = author
+    
+
+    def __str__(self) -> str:
+        return f'"{self.name}", {self.author}'
+    
+
 class Library:
     def __init__(self) -> None:
-        self.books: list[tuple[str, str]] = []
-            
+        self.books: list[Book] = []
 
-    def add_book(self, name: str, author: str):
-        self.books.append((name, author))
+
+    def library_list(self) -> list[str]:
+        return [book.__str__() for book in self.books]
+
+    
+    def add_book(self, book) -> 'Library':
+        self.books.append(book)
         return self
 
 
-    def remove_book(self, name: str):
+    def remove_book(self, name_book: str) -> 'Library':
         for book in self.books:
-            if book[0] == name:
+            if book.name == name_book:
                 self.books.remove(book)
         return self
 
 
-    def __getitem__(self, index: int) -> tuple[str, str]:
-        return self.books[index]
+    def __getitem__(self, index: int) -> str:
+        return self.books[index].__str__()
 
         
     def __contains__(self, name_book) -> bool:
-        return bool([book for book in self.books if book[0] == name_book])
+        return bool([book for book in self.books if book.name == name_book])
 
 
-library = Library()
+library: Library = Library()
 
-library.add_book('Мёртвые души', 'Н.В. Гоголь').remove_book('Мёртвые души').add_book(
-    'Евгений Онегин', 'А.С. Пушкин').add_book('Война и мир', 'Л.Н. Толстой')
+book1 = Book('Мёртвые души', 'Н.В. Гоголь')
+book2 = Book('Евгений Онегин', 'А.С. Пушкин')
+book3 = Book('Война и мир', 'Л.Н. Толстой')
+
+library.add_book(book1).remove_book(book1).add_book(
+    book2).add_book(book3)
 
 print(library[-1])
 print('Евгений Онегин' in library)
 print('Преступление и наказание' in library)
+print(library.library_list())
