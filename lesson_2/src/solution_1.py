@@ -1,3 +1,5 @@
+from datetime import datetime
+
 class Person:
     def __init__(self, name: str, age: int) -> None:
         self.name = name
@@ -6,7 +8,7 @@ class Person:
 
     @classmethod
     def from_birth_year(cls, name: str, birth_year: int) -> 'Person':
-        return cls(name, 2023 - birth_year)
+        return cls(name, datetime.now().year - birth_year)
     
 
     def __str__(self) -> str:
