@@ -14,7 +14,7 @@ class LightedFountain:
     def spray_water(self) -> None:
         print('Это освещённый фонтан')
 
-fountains: list[Fountain] = [SimpleFountain(), MusicalFountain(), LightedFountain()]
+fountains: list[Fountain] = [SimpleFountain, MusicalFountain, LightedFountain]
 
 for fountain in fountains:
     fountain.spray_water()
