@@ -3,8 +3,8 @@ class Greenhouse:
         self.__temp = temp
         self.__humidity = humidity
         self.__light_level = light_level
-
-    def get_temp(self) -> int:
+    @property
+    def temp(self) -> int:
         return self.__temp
     
     def get_humidity(self) -> int:
@@ -36,7 +36,9 @@ greenhouse.set_temp(25)
 greenhouse.set_humidity(100)
 greenhouse.set_light_level(350)
 
-print(f'температура: {greenhouse.get_temp()} градусов\
+print(f'температура: {greenhouse.temp()} градусов\
       \nвлажность: {greenhouse.get_humidity()} %\
       \nосвещенность: {greenhouse.get_light_level()} Лк\
       ')
+
+print(greenhouse.temp)
