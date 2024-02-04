@@ -9,18 +9,15 @@ class FileHandler:
 
 class TextFileHandler(FileHandler):
     def __init__(self, file_name: str) -> None:
-        if file_name[-4:] == '.txt':
-            self.file_name = file_name
-        else:
-            print('Разрешение файла должно быть ".txt"')
-
-    def read(self) -> None:
+        self.file_name = file_name
+        
+    def read(self) -> str:
         file = open('src/' + self.file_name)
         text = file.read()
         file.close()    
         return text
 
-    def write(self, data: str):
+    def write(self, data: str) -> None:
         file = open('src/' + self.file_name, 'w+')
         file.write(data)
         file.close()
@@ -28,28 +25,28 @@ class TextFileHandler(FileHandler):
         
 class BinaryFileHandler(FileHandler):
     def __init__(self, file_name: str) -> None:
-        if file_name[-4:] == '.bin':
-            self.file_name = file_name
-        else:
-            print('Разрешение файла должно быть ".bin"')
-
-    def read(self) -> None:
+        self.file_name = file_name
+        
+    def read(self) -> str:
         file = open('src/' + self.file_name, 'rb')
         bin = file.read()
         file.close()
         return bin
 
-    def write(self, data: str):
+    def write(self, data: str) -> None:
         file = open('src/' + self.file_name, 'wb+')
         pickle.dump(data, file)
         file.close()
         print(f"Бинарный файл {self.file_name} был записан! \nСодержимое файла: '{self.read()}'")
 
-print()
+def save_data(handler: FileHandler, data: str) -> None:
+    handler.write(data)
+
 text_file = TextFileHandler('Text_file.txt')
-text_file.write('Hello, World!')
+binary_file = BinaryFileHandler('Binary_file.bin')
 
 print()
-binary_file_handler = BinaryFileHandler('Binary_file.bin')
-binary_file_handler.write('Привет, Мир!')
+save_data(text_file, 'Hello, World!')
+print()
+save_data(binary_file, 'Привет, Мир!')
 print()
