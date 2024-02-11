@@ -17,10 +17,9 @@ def send_welcome(message: Message) -> None:
     - Чтобы посмотреть ваши задачи, отправьте /show_tasks
     - Чтобы посмотреть эту памятку снова, отправьте /help
     """
-
     user_id: int = message.chat.id
     bot.send_message(user_id, welcome_text)
 
 
-    if __name__ == '__main__':
-        bot.infinity_polling()
+if __name__ == '__main__':
+    bot.infinity_polling()
