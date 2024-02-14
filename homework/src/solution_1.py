@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 import os
 
 load_dotenv('.env')
-TG_TOKEN = os.getenv('TG_TOKEN')
+TG_TOKEN = os.getenv('TG_TOKEN2')
 
 bot = TeleBot(TG_TOKEN)
 
